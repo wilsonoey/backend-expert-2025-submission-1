@@ -1,0 +1,846 @@
+FAIL src/Infrastructures/http/_test/replies.test.js (41.637 s)
+  ● Console
+
+    console.log
+      TEST SUMMARY: Error: Missing authentication
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: NotFoundError: COMMENT.NOT_FOUND
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: ADD_REPLY.NOT_MEET_DATA_TYPE_SPECIFICATION
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: error: null value in column "thread_id" of relation "comment_replies" violates not-null constraint
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: Missing authentication
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: AuthorizationError: REPLY.NOT_AUTHORIZED
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: NotFoundError: REPLY.NOT_FOUND
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when POST /threads/{threadId}/comments/{commentId}/replies › should response 404 when request id thread or id comment not found in database
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 404
+    Received: 400
+
+      67 |       // Assert
+      68 |       const responseJson = JSON.parse(response.payload);
+    > 69 |       expect(response.statusCode).toEqual(404);
+         |                                   ^
+      70 |       expect(responseJson.status).toEqual("fail");
+      71 |       expect(responseJson.message).toEqual("COMMENT.NOT_FOUND");
+      72 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:69:35)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when POST /threads/{threadId}/comments/{commentId}/replies › should response 400 when request payload not contain needed property
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY"
+    Received: "tidak dapat menambahkan reply comment, request payload tidak lengkap"
+
+      103 |       expect(response.statusCode).toEqual(400);
+      104 |       expect(responseJson.status).toEqual("fail");
+    > 105 |       expect(responseJson.message).toEqual(
+          |                                    ^
+      106 |         "ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY"
+      107 |       );
+      108 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:105:36)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when POST /threads/{threadId}/comments/{commentId}/replies › should response 201 and persisted reply
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 201
+    Received: 500
+
+      179 |       // Assert
+      180 |       const responseJson = JSON.parse(response.payload);
+    > 181 |       expect(response.statusCode).toEqual(201);
+          |                                   ^
+      182 |       expect(responseJson.status).toEqual("success");
+      183 |       expect(responseJson.data.addedReply).toBeDefined();
+      184 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:181:35)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId} › should response 403 when delete reply is invalid owner
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: 400
+
+      249 |       // Assert
+      250 |       const responseJson = JSON.parse(response.payload);
+    > 251 |       expect(response.statusCode).toEqual(403);
+          |                                   ^
+      252 |       expect(responseJson.status).toEqual("fail");
+      253 |       expect(responseJson.message).toEqual(
+      254 |         "REPLY.NOT_AUTHORIZED"
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:251:35)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId} › should response 404 when delete thread, comment, or reply not found in database
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 404
+    Received: 400
+
+      291 |       // Assert
+      292 |       const responseJson = JSON.parse(response.payload);
+    > 293 |       expect(response.statusCode).toEqual(404);
+          |                                   ^
+      294 |       expect(responseJson.status).toEqual("fail");
+      295 |       expect(responseJson.message).toEqual("REPLY.NOT_FOUND");
+      296 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:293:35)
+
+PASS src/Infrastructures/repository/_test/ReplyRepositoryPostgres.test.js (30.317 s)
+FAIL src/Infrastructures/repository/_test/CommentRepositoryPostgres.test.js (19.297 s)
+  ● CommentRepositoryPostgres › verifyAvailableCommentById function › should not throw NotFoundError when comment exists
+
+    ReferenceError: CommentsTableTestHelper is not defined
+
+       98 |       // Arrange
+       99 |       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+    > 100 |       await CommentsTableTestHelper.addComment({
+          |       ^
+      101 |         id: 'comment-123',
+      102 |         threadId: 'thread-123',
+      103 |         content: 'Example Comment',
+
+      at Object.<anonymous> (src/Infrastructures/repository/_test/CommentRepositoryPostgres.test.js:100:7)
+
+PASS src/Infrastructures/http/_test/authentications.test.js (16.792 s)
+  ● Console
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: InvariantError: username tidak ditemukan
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: AuthenticationError: kredensial yang Anda masukkan salah
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: USER_LOGIN.NOT_CONTAIN_NEEDED_PROPERTY
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: USER_LOGIN.NOT_MEET_DATA_TYPE_SPECIFICATION
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: REFRESH_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: InvariantError: refresh token tidak valid
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: InvariantError: refresh token tidak ditemukan di database
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: InvariantError: refresh token tidak ditemukan di database
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: DELETE_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: DELETE_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+PASS src/Infrastructures/http/_test/threads.test.js (16.702 s)
+  ● Console
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: ADD_THREAD.NOT_CONTAIN_NEEDED_PROPERTY
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: ADD_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: Missing authentication
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: NotFoundError: THREAD.NOT_FOUND di database
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+PASS src/Infrastructures/repository/_test/ThreadRepositoryPostgres.test.js (7.716 s)
+PASS src/Infrastructures/repository/_test/UserRepositoryPostgres.test.js (7.188 s)
+PASS src/Infrastructures/repository/_test/AuthenticationRepositoryPostgres.test.js (5.768 s)
+PASS src/Infrastructures/http/_test/users.test.js (5.411 s)
+  ● Console
+
+    console.log
+      TEST SUMMARY: [object Object]
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: REGISTER_USER.USERNAME_LIMIT_CHAR
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: Error: REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: InvariantError: username tidak tersedia
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+PASS src/Infrastructures/http/_test/createServer.test.js
+  ● Console
+
+    console.log
+      TEST SUMMARY: Error: Not Found
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+    console.log
+      TEST SUMMARY: TypeError: this._container.getInstance is not a function
+
+      at log (src/Infrastructures/http/createServer.js:68:13)
+
+PASS src/Infrastructures/security/_test/BcryptPasswordHash.test.js
+PASS src/Infrastructures/security/_test/JwtTokenManager.test.js
+PASS src/Domains/users/entities/_test/RegisteredUser.test.js
+PASS src/Domains/comments/entities/_test/AddComment.test.js
+PASS src/Applications/use_case/_test/AddCommentUseCase.test.js
+PASS src/Commons/exceptions/_test/InvariantError.test.js
+PASS src/Applications/use_case/_test/LoginUserUseCase.test.js
+PASS src/Domains/threads/_test/ThreadRepository.test.js
+PASS src/Domains/threads/entities/_test/AddThread.test.js
+PASS src/Domains/users/_test/UserRepository.test.js
+PASS src/Domains/comments/_test/CommentRepository.test.js
+PASS src/Domains/authentications/entities/_test/NewAuth.test.js
+PASS src/Commons/exceptions/_test/AuthorizationError.test.js
+PASS src/Domains/users/entities/_test/RegisterUser.test.js
+PASS src/Domains/replies/_test/ReplyRepository.test.js
+PASS src/Commons/exceptions/_test/ClientError.test.js
+PASS src/Applications/use_case/_test/DeleteAuthenticationUseCase.test.js
+PASS src/Domains/authentications/_test/AuthenticationRepository.test.js
+PASS src/Applications/use_case/_test/RefreshAuthenticationUseCase.test.js
+PASS src/Domains/replies/entities/_test/DeleteReply.test.js
+PASS src/Domains/replies/entities/_test/AddReply.test.js
+PASS src/Applications/use_case/_test/AddReplyUseCase.test.js
+PASS src/Domains/users/entities/_test/UserLogin.test.js
+PASS src/Domains/threads/entities/_test/AddedThread.test.js
+PASS src/Domains/replies/entities/_test/AddedReply.test.js
+PASS src/Applications/security/_test/AuthenticationTokenManager.test.js
+PASS src/Domains/comments/entities/_test/AddedComment.test.js
+PASS src/Domains/comments/entities/_test/DeleteComment.test.js
+PASS src/Applications/security/_test/PasswordHash.test.js
+PASS src/Applications/use_case/_test/DeleteCommentUseCase.test.js
+PASS src/Commons/exceptions/_test/DomainErrorTranslator.test.js
+PASS src/Applications/use_case/_test/LogoutUserUseCase.test.js
+PASS src/Applications/use_case/_test/DeleteReplyUseCase.test.js
+PASS src/Commons/exceptions/_test/AuthenticationError.test.js
+PASS src/Commons/exceptions/_test/NotFoundError.test.js
+PASS src/Applications/use_case/_test/AddThreadUseCase.test.js
+PASS src/Applications/use_case/_test/AddUserUseCase.test.js
+FAIL src/Infrastructures/http/_test/comments.test.js
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    SyntaxError: D:\Dicoding_Indonesia_files\Backend\Menjadi Back-End Developer Expert\deployment\src\Infrastructures\http\_test\comments.test.js: Unexpected reserved word 'await'. (143:6)
+
+      141 |
+      142 |       const otherCommentOwner = 'user-456';
+    > 143 |       await UsersTableTestHelper.addUser({ id: otherCommentOwner, username: 'user456' });
+          |       ^
+      144 |       const commentId = 'comment-456';
+      145 |       await CommentsTableTestHelper.addComment(
+      146 |         {
+
+      at constructor (node_modules/@babel/parser/src/parse-error.ts:81:19)
+      at Parser.toParseError [as raise] (node_modules/@babel/parser/src/tokenizer/index.ts:1487:19)
+      at Parser.raise [as checkReservedWord] (node_modules/@babel/parser/src/parser/expression.ts:2842:12)
+      at Parser.checkReservedWord [as parseIdentifierName] (node_modules/@babel/parser/src/parser/expression.ts:2803:12)
+      at Parser.parseIdentifierName [as parseIdentifier] (node_modules/@babel/parser/src/parser/expression.ts:2768:23)
+      at Parser.parseIdentifier [as parseExprAtom] (node_modules/@babel/parser/src/parser/expression.ts:1298:27)
+      at Parser.parseExprAtom [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:705:23)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at Parser.parseMaybeAssign [as parseExpressionBase] (node_modules/@babel/parser/src/parser/expression.ts:212:23)
+      at parseExpressionBase (node_modules/@babel/parser/src/parser/expression.ts:203:39)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3134:16)
+      at Parser.allowInAnd [as parseExpression] (node_modules/@babel/parser/src/parser/expression.ts:203:17)
+      at Parser.parseExpression [as parseStatementContent] (node_modules/@babel/parser/src/parser/statement.ts:645:23)
+      at Parser.parseStatementContent [as parseStatementLike] (node_modules/@babel/parser/src/parser/statement.ts:417:17)
+      at Parser.parseStatementLike [as parseStatementListItem] (node_modules/@babel/parser/src/parser/statement.ts:366:17)
+      at Parser.parseStatementListItem [as parseBlockOrModuleBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1395:16)
+      at Parser.parseBlockOrModuleBlockBody [as parseBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1368:10)
+      at Parser.parseBlockBody [as parseBlock] (node_modules/@babel/parser/src/parser/statement.ts:1336:10)
+      at Parser.parseBlock [as parseFunctionBody] (node_modules/@babel/parser/src/parser/expression.ts:2586:24)
+      at Parser.parseFunctionBody [as parseArrowExpression] (node_modules/@babel/parser/src/parser/expression.ts:2529:10)
+      at Parser.parseArrowExpression [as parseParenAndDistinguishExpression] (node_modules/@babel/parser/src/parser/expression.ts:1826:12)
+      at Parser.parseParenAndDistinguishExpression [as parseExprAtom] (node_modules/@babel/parser/src/parser/expression.ts:1165:21)
+      at Parser.parseExprAtom [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:705:23)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at parseMaybeAssign (node_modules/@babel/parser/src/parser/expression.ts:243:12)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3139:12)
+      at Parser.allowInAnd [as parseMaybeAssignAllowIn] (node_modules/@babel/parser/src/parser/expression.ts:242:17)
+      at Parser.parseMaybeAssignAllowIn [as parseExprListItem] (node_modules/@babel/parser/src/parser/expression.ts:2752:18)
+      at Parser.parseExprListItem [as parseCallExpressionArguments] (node_modules/@babel/parser/src/parser/expression.ts:1039:14)
+      at Parser.parseCallExpressionArguments [as parseCoverCallAndAsyncArrowHead] (node_modules/@babel/parser/src/parser/expression.ts:881:29)
+      at Parser.parseCoverCallAndAsyncArrowHead [as parseSubscript] (node_modules/@babel/parser/src/parser/expression.ts:770:19)
+      at Parser.parseSubscript [as parseSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:726:19)
+      at Parser.parseSubscripts [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:711:17)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at Parser.parseMaybeAssign [as parseExpressionBase] (node_modules/@babel/parser/src/parser/expression.ts:212:23)
+      at parseExpressionBase (node_modules/@babel/parser/src/parser/expression.ts:203:39)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3134:16)
+      at Parser.allowInAnd [as parseExpression] (node_modules/@babel/parser/src/parser/expression.ts:203:17)
+      at Parser.parseExpression [as parseStatementContent] (node_modules/@babel/parser/src/parser/statement.ts:645:23)
+      at Parser.parseStatementContent [as parseStatementLike] (node_modules/@babel/parser/src/parser/statement.ts:417:17)
+      at Parser.parseStatementLike [as parseStatementListItem] (node_modules/@babel/parser/src/parser/statement.ts:366:17)
+      at Parser.parseStatementListItem [as parseBlockOrModuleBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1395:16)
+      at Parser.parseBlockOrModuleBlockBody [as parseBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1368:10)
+      at Parser.parseBlockBody [as parseBlock] (node_modules/@babel/parser/src/parser/statement.ts:1336:10)
+      at Parser.parseBlock [as parseFunctionBody] (node_modules/@babel/parser/src/parser/expression.ts:2586:24)
+      at Parser.parseFunctionBody [as parseArrowExpression] (node_modules/@babel/parser/src/parser/expression.ts:2529:10)
+      at Parser.parseArrowExpression [as parseParenAndDistinguishExpression] (node_modules/@babel/parser/src/parser/expression.ts:1826:12)
+      at Parser.parseParenAndDistinguishExpression [as parseExprAtom] (node_modules/@babel/parser/src/parser/expression.ts:1165:21)
+      at Parser.parseExprAtom [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:705:23)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at parseMaybeAssign (node_modules/@babel/parser/src/parser/expression.ts:243:12)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3139:12)
+      at Parser.allowInAnd [as parseMaybeAssignAllowIn] (node_modules/@babel/parser/src/parser/expression.ts:242:17)
+      at Parser.parseMaybeAssignAllowIn [as parseExprListItem] (node_modules/@babel/parser/src/parser/expression.ts:2752:18)
+      at Parser.parseExprListItem [as parseCallExpressionArguments] (node_modules/@babel/parser/src/parser/expression.ts:1039:14)
+      at Parser.parseCallExpressionArguments [as parseCoverCallAndAsyncArrowHead] (node_modules/@babel/parser/src/parser/expression.ts:881:29)
+      at Parser.parseCoverCallAndAsyncArrowHead [as parseSubscript] (node_modules/@babel/parser/src/parser/expression.ts:770:19)
+      at Parser.parseSubscript [as parseSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:726:19)
+      at Parser.parseSubscripts [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:711:17)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at Parser.parseMaybeAssign [as parseExpressionBase] (node_modules/@babel/parser/src/parser/expression.ts:212:23)
+      at parseExpressionBase (node_modules/@babel/parser/src/parser/expression.ts:203:39)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3134:16)
+      at Parser.allowInAnd [as parseExpression] (node_modules/@babel/parser/src/parser/expression.ts:203:17)
+      at Parser.parseExpression [as parseStatementContent] (node_modules/@babel/parser/src/parser/statement.ts:645:23)
+      at Parser.parseStatementContent [as parseStatementLike] (node_modules/@babel/parser/src/parser/statement.ts:417:17)
+      at Parser.parseStatementLike [as parseModuleItem] (node_modules/@babel/parser/src/parser/statement.ts:354:17)
+      at Parser.parseModuleItem [as parseBlockOrModuleBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1394:16)
+      at Parser.parseBlockOrModuleBlockBody [as parseBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1368:10)
+      at Parser.parseBlockBody [as parseProgram] (node_modules/@babel/parser/src/parser/statement.ts:213:10)
+      at Parser.parseProgram [as parseTopLevel] (node_modules/@babel/parser/src/parser/statement.ts:195:25)
+      at Parser.parseTopLevel [as parse] (node_modules/@babel/parser/src/parser/index.ts:45:10)
+      at parse (node_modules/@babel/parser/src/index.ts:66:38)
+      at parser (node_modules/@babel/core/src/parser/index.ts:28:19)
+          at parser.next (<anonymous>)
+
+Summary of all failing tests
+FAIL src/Infrastructures/http/_test/replies.test.js (41.637 s)
+  ● /threads/{threadId}/comments/{commentId}/replies › when POST /threads/{threadId}/comments/{commentId}/replies › should response 404 when request id thread or id comment not found in database
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 404
+    Received: 400
+
+      67 |       // Assert
+      68 |       const responseJson = JSON.parse(response.payload);
+    > 69 |       expect(response.statusCode).toEqual(404);
+         |                                   ^
+      70 |       expect(responseJson.status).toEqual("fail");
+      71 |       expect(responseJson.message).toEqual("COMMENT.NOT_FOUND");
+      72 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:69:35)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when POST /threads/{threadId}/comments/{commentId}/replies › should response 400 when request payload not contain needed property
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY"
+    Received: "tidak dapat menambahkan reply comment, request payload tidak lengkap"
+
+      103 |       expect(response.statusCode).toEqual(400);
+      104 |       expect(responseJson.status).toEqual("fail");
+    > 105 |       expect(responseJson.message).toEqual(
+          |                                    ^
+      106 |         "ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY"
+      107 |       );
+      108 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:105:36)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when POST /threads/{threadId}/comments/{commentId}/replies › should response 201 and persisted reply
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 201
+    Received: 500
+
+      179 |       // Assert
+      180 |       const responseJson = JSON.parse(response.payload);
+    > 181 |       expect(response.statusCode).toEqual(201);
+          |                                   ^
+      182 |       expect(responseJson.status).toEqual("success");
+      183 |       expect(responseJson.data.addedReply).toBeDefined();
+      184 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:181:35)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId} › should response 403 when delete reply is invalid owner
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: 400
+
+      249 |       // Assert
+      250 |       const responseJson = JSON.parse(response.payload);
+    > 251 |       expect(response.statusCode).toEqual(403);
+          |                                   ^
+      252 |       expect(responseJson.status).toEqual("fail");
+      253 |       expect(responseJson.message).toEqual(
+      254 |         "REPLY.NOT_AUTHORIZED"
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:251:35)
+
+  ● /threads/{threadId}/comments/{commentId}/replies › when DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId} › should response 404 when delete thread, comment, or reply not found in database
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 404
+    Received: 400
+
+      291 |       // Assert
+      292 |       const responseJson = JSON.parse(response.payload);
+    > 293 |       expect(response.statusCode).toEqual(404);
+          |                                   ^
+      294 |       expect(responseJson.status).toEqual("fail");
+      295 |       expect(responseJson.message).toEqual("REPLY.NOT_FOUND");
+      296 |     });
+
+      at Object.toEqual (src/Infrastructures/http/_test/replies.test.js:293:35)
+
+FAIL src/Infrastructures/repository/_test/CommentRepositoryPostgres.test.js (19.297 s)
+  ● CommentRepositoryPostgres › verifyAvailableCommentById function › should not throw NotFoundError when comment exists
+
+    ReferenceError: CommentsTableTestHelper is not defined
+
+       98 |       // Arrange
+       99 |       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+    > 100 |       await CommentsTableTestHelper.addComment({
+          |       ^
+      101 |         id: 'comment-123',
+      102 |         threadId: 'thread-123',
+      103 |         content: 'Example Comment',
+
+      at Object.<anonymous> (src/Infrastructures/repository/_test/CommentRepositoryPostgres.test.js:100:7)
+
+FAIL src/Infrastructures/http/_test/comments.test.js
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    SyntaxError: D:\Dicoding_Indonesia_files\Backend\Menjadi Back-End Developer Expert\deployment\src\Infrastructures\http\_test\comments.test.js: Unexpected reserved word 'await'. (143:6)
+
+      141 |
+      142 |       const otherCommentOwner = 'user-456';
+    > 143 |       await UsersTableTestHelper.addUser({ id: otherCommentOwner, username: 'user456' });
+          |       ^
+      144 |       const commentId = 'comment-456';
+      145 |       await CommentsTableTestHelper.addComment(
+      146 |         {
+
+      at constructor (node_modules/@babel/parser/src/parse-error.ts:81:19)
+      at Parser.toParseError [as raise] (node_modules/@babel/parser/src/tokenizer/index.ts:1487:19)
+      at Parser.raise [as checkReservedWord] (node_modules/@babel/parser/src/parser/expression.ts:2842:12)
+      at Parser.checkReservedWord [as parseIdentifierName] (node_modules/@babel/parser/src/parser/expression.ts:2803:12)
+      at Parser.parseIdentifierName [as parseIdentifier] (node_modules/@babel/parser/src/parser/expression.ts:2768:23)
+      at Parser.parseIdentifier [as parseExprAtom] (node_modules/@babel/parser/src/parser/expression.ts:1298:27)
+      at Parser.parseExprAtom [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:705:23)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at Parser.parseMaybeAssign [as parseExpressionBase] (node_modules/@babel/parser/src/parser/expression.ts:212:23)
+      at parseExpressionBase (node_modules/@babel/parser/src/parser/expression.ts:203:39)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3134:16)
+      at Parser.allowInAnd [as parseExpression] (node_modules/@babel/parser/src/parser/expression.ts:203:17)
+      at Parser.parseExpression [as parseStatementContent] (node_modules/@babel/parser/src/parser/statement.ts:645:23)
+      at Parser.parseStatementContent [as parseStatementLike] (node_modules/@babel/parser/src/parser/statement.ts:417:17)
+      at Parser.parseStatementLike [as parseStatementListItem] (node_modules/@babel/parser/src/parser/statement.ts:366:17)
+      at Parser.parseStatementListItem [as parseBlockOrModuleBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1395:16)
+      at Parser.parseBlockOrModuleBlockBody [as parseBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1368:10)
+      at Parser.parseBlockBody [as parseBlock] (node_modules/@babel/parser/src/parser/statement.ts:1336:10)
+      at Parser.parseBlock [as parseFunctionBody] (node_modules/@babel/parser/src/parser/expression.ts:2586:24)
+      at Parser.parseFunctionBody [as parseArrowExpression] (node_modules/@babel/parser/src/parser/expression.ts:2529:10)
+      at Parser.parseArrowExpression [as parseParenAndDistinguishExpression] (node_modules/@babel/parser/src/parser/expression.ts:1826:12)
+      at Parser.parseParenAndDistinguishExpression [as parseExprAtom] (node_modules/@babel/parser/src/parser/expression.ts:1165:21)
+      at Parser.parseExprAtom [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:705:23)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at parseMaybeAssign (node_modules/@babel/parser/src/parser/expression.ts:243:12)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3139:12)
+      at Parser.allowInAnd [as parseMaybeAssignAllowIn] (node_modules/@babel/parser/src/parser/expression.ts:242:17)
+      at Parser.parseMaybeAssignAllowIn [as parseExprListItem] (node_modules/@babel/parser/src/parser/expression.ts:2752:18)
+      at Parser.parseExprListItem [as parseCallExpressionArguments] (node_modules/@babel/parser/src/parser/expression.ts:1039:14)
+      at Parser.parseCallExpressionArguments [as parseCoverCallAndAsyncArrowHead] (node_modules/@babel/parser/src/parser/expression.ts:881:29)
+      at Parser.parseCoverCallAndAsyncArrowHead [as parseSubscript] (node_modules/@babel/parser/src/parser/expression.ts:770:19)
+      at Parser.parseSubscript [as parseSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:726:19)
+      at Parser.parseSubscripts [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:711:17)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at Parser.parseMaybeAssign [as parseExpressionBase] (node_modules/@babel/parser/src/parser/expression.ts:212:23)
+      at parseExpressionBase (node_modules/@babel/parser/src/parser/expression.ts:203:39)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3134:16)
+      at Parser.allowInAnd [as parseExpression] (node_modules/@babel/parser/src/parser/expression.ts:203:17)
+      at Parser.parseExpression [as parseStatementContent] (node_modules/@babel/parser/src/parser/statement.ts:645:23)
+      at Parser.parseStatementContent [as parseStatementLike] (node_modules/@babel/parser/src/parser/statement.ts:417:17)
+      at Parser.parseStatementLike [as parseStatementListItem] (node_modules/@babel/parser/src/parser/statement.ts:366:17)
+      at Parser.parseStatementListItem [as parseBlockOrModuleBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1395:16)
+      at Parser.parseBlockOrModuleBlockBody [as parseBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1368:10)
+      at Parser.parseBlockBody [as parseBlock] (node_modules/@babel/parser/src/parser/statement.ts:1336:10)
+      at Parser.parseBlock [as parseFunctionBody] (node_modules/@babel/parser/src/parser/expression.ts:2586:24)
+      at Parser.parseFunctionBody [as parseArrowExpression] (node_modules/@babel/parser/src/parser/expression.ts:2529:10)
+      at Parser.parseArrowExpression [as parseParenAndDistinguishExpression] (node_modules/@babel/parser/src/parser/expression.ts:1826:12)
+      at Parser.parseParenAndDistinguishExpression [as parseExprAtom] (node_modules/@babel/parser/src/parser/expression.ts:1165:21)
+      at Parser.parseExprAtom [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:705:23)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at parseMaybeAssign (node_modules/@babel/parser/src/parser/expression.ts:243:12)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3139:12)
+      at Parser.allowInAnd [as parseMaybeAssignAllowIn] (node_modules/@babel/parser/src/parser/expression.ts:242:17)
+      at Parser.parseMaybeAssignAllowIn [as parseExprListItem] (node_modules/@babel/parser/src/parser/expression.ts:2752:18)
+      at Parser.parseExprListItem [as parseCallExpressionArguments] (node_modules/@babel/parser/src/parser/expression.ts:1039:14)
+      at Parser.parseCallExpressionArguments [as parseCoverCallAndAsyncArrowHead] (node_modules/@babel/parser/src/parser/expression.ts:881:29)
+      at Parser.parseCoverCallAndAsyncArrowHead [as parseSubscript] (node_modules/@babel/parser/src/parser/expression.ts:770:19)
+      at Parser.parseSubscript [as parseSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:726:19)
+      at Parser.parseSubscripts [as parseExprSubscripts] (node_modules/@babel/parser/src/parser/expression.ts:711:17)
+      at Parser.parseExprSubscripts [as parseUpdate] (node_modules/@babel/parser/src/parser/expression.ts:682:21)
+      at Parser.parseUpdate [as parseMaybeUnary] (node_modules/@babel/parser/src/parser/expression.ts:644:23)
+      at Parser.parseMaybeUnary [as parseMaybeUnaryOrPrivate] (node_modules/@babel/parser/src/parser/expression.ts:382:14)
+      at Parser.parseMaybeUnaryOrPrivate [as parseExprOps] (node_modules/@babel/parser/src/parser/expression.ts:394:23)
+      at Parser.parseExprOps [as parseMaybeConditional] (node_modules/@babel/parser/src/parser/expression.ts:349:23)
+      at Parser.parseMaybeConditional [as parseMaybeAssign] (node_modules/@babel/parser/src/parser/expression.ts:289:21)
+      at Parser.parseMaybeAssign [as parseExpressionBase] (node_modules/@babel/parser/src/parser/expression.ts:212:23)
+      at parseExpressionBase (node_modules/@babel/parser/src/parser/expression.ts:203:39)
+      at Parser.callback [as allowInAnd] (node_modules/@babel/parser/src/parser/expression.ts:3134:16)
+      at Parser.allowInAnd [as parseExpression] (node_modules/@babel/parser/src/parser/expression.ts:203:17)
+      at Parser.parseExpression [as parseStatementContent] (node_modules/@babel/parser/src/parser/statement.ts:645:23)
+      at Parser.parseStatementContent [as parseStatementLike] (node_modules/@babel/parser/src/parser/statement.ts:417:17)
+      at Parser.parseStatementLike [as parseModuleItem] (node_modules/@babel/parser/src/parser/statement.ts:354:17)
+      at Parser.parseModuleItem [as parseBlockOrModuleBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1394:16)
+      at Parser.parseBlockOrModuleBlockBody [as parseBlockBody] (node_modules/@babel/parser/src/parser/statement.ts:1368:10)
+      at Parser.parseBlockBody [as parseProgram] (node_modules/@babel/parser/src/parser/statement.ts:213:10)
+      at Parser.parseProgram [as parseTopLevel] (node_modules/@babel/parser/src/parser/statement.ts:195:25)
+      at Parser.parseTopLevel [as parse] (node_modules/@babel/parser/src/parser/index.ts:45:10)
+      at parse (node_modules/@babel/parser/src/index.ts:66:38)
+      at parser (node_modules/@babel/core/src/parser/index.ts:28:19)
+          at parser.next (<anonymous>)
+
+
+Test Suites: 3 failed, 45 passed, 48 total
+Tests:       6 failed, 151 passed, 157 total
+Snapshots:   0 total
+Time:        197.18 s
+Ran all test suites.
